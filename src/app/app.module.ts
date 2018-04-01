@@ -11,7 +11,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { EmployeeComponent } from './employees/employee/employee.component';
 import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
 import { environment } from '../environments/environment';
-import { ToastrModule } from 'ngx-toastr';
+
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 
@@ -32,7 +32,8 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
       confirmButtonType: 'danger' // set defaults here
     }),
 
-    ToastrModule.forRoot()
+
+
 
   ],
   providers: [],
