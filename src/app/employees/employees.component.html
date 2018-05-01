@@ -1,5 +1,14 @@
 <div class="text-center">
-  <h2 class="jumbotron">Employee Register</h2>
+  <button type="button" class="btn-request hidden-sm  pull-right " style="margin:30px 10px;outline:none;" (click)="paginationModal();">
+    <span class="visible-content" style="    margin-left: 10px;">Pagination</span>
+  </button>
+  <button type="button" class="btn-request hidden-sm  pull-right " style="margin:30px 10px;outline:none;" (click)="sampleReqister();">
+    <span class="visible-content" style="    margin-left: 10px;">Sign Up</span>
+  </button>
+  <button type="button" class="btn-request hidden-sm  pull-right " style="margin:30px 10px;outline:none;" (click)="Login();">
+    <span class="visible-content" style="    margin-left: 10px;">Sign In</span>
+  </button>
+  <h2 class="jumbotron">Student Register</h2>
 </div>
 <div class="row">
   <div class="col-md-7">
@@ -9,3 +18,148 @@
     <app-employee-list></app-employee-list>
   </div>
 </div>
+
+<!--Registration Modal-->
+<div class="modal fade" bsModal tabindex="-1" role="dialog" #registerForms="bs-modal" [config]="{backdrop: 'static'}">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header draggable-handle">
+        <h4 class="modal-title">Registration </h4>
+          <button type="button" class="close" (click)="registerForms.hide();" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+      <div class="modal-body" style="padding:0 50px;margin-top:20px;">
+        <form [formGroup]="registerForm" (ngSubmit)="submitForm(registerForm.value)">
+          <div class="row">
+            <div class="col-md-12 padding-form">
+              <input type="text" required placeholder="Student Name" maxlength="26" name='studentName' class=" form-control" formControlName="studentName">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 padding-form">
+              <input type="email" required placeholder="Enter Email"  name='email' class="form-control" formControlName="email">
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 padding-form">
+              <input type="password" required placeholder="Enter password"  name='email' class="form-control" formControlName="password">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 padding-form  ">
+              <input type="text" (keypress)="keyPress($event)" required placeholder="Mobile Number" maxlength="14" minlength="7" name='phoneNo' class="center-block form-control extra" formControlName="phoneNo">
+            </div>
+          </div>
+          <div class="modal-footer ">
+            <div class="col-md-12">
+              <button [disabled]="!registerForm.valid" type="submit " class="btn btn-info"> <span>Sign Up</span></button>
+              <button (click)="registerForms.hide();reset();registerForm=''" type="submit " class="btn btn-danger"> <span>Cancel</span></button>
+            </div>
+          </div>
+        </form>
+        <pre>{{value | json}}</pre>
+        <b style="text-align: center;margin-left: 105px">OR</b><br>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <!--<div class ="data">-->
+          <!--<p>Profile Details</p>-->
+          <!--<img id="pic" class="img-circle" width="100" height="100"/>-->
+          <!--<p>Email Address</p>-->
+          <!--<p id="email" class="alert alert-danger"></p>-->
+          <!--<button onclick="signOut();" class="btn btn-danger">SignOut</button>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--login modal-->
+<div class="modal fade" bsModal tabindex="-1" role="dialog" #loginForms="bs-modal" [config]="{backdrop: 'static'}">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header draggable-handle">
+        <h4 class="modal-title">Login Form </h4>
+        <button type="button" class="close" (click)="loginForms.hide();" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+      <div class="modal-body" style="padding:0 50px;margin-top:20px;">
+        <form [formGroup]="loginForm" (ngSubmit)="Form(loginForm.value)">
+          <div class="row">
+            <div class="col-md-12 padding-form">
+              <input type="email" required placeholder="Enter Email"  name='email' class="form-control" formControlName="email">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 padding-form">
+              <input type="password" required placeholder="Enter password"  name='password' class="form-control" formControlName="password">
+            </div>
+          </div>
+          <div class="modal-footer ">
+            <div class="col-md-12">
+              <button [disabled]="!loginForm.valid" type="submit " class="btn btn-info"> <span>Login</span></button>
+              <button (click)="loginForms.hide();reset1();" type="submit " class="btn btn-danger"> <span>Cancel</span></button>
+            </div>
+          </div>
+        </form>
+        <pre>{{loginValue | json}}</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--pagination modal-->
+<div class="modal fade" bsModal tabindex="-1" role="dialog" #paginationModals="bs-modal" [config]="{backdrop: 'static'}">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header draggable-handle">
+        <h4 class="modal-title">Pagination Example </h4>
+        <button type="button" class="close" (click)="paginationModals.hide();" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+      <div class="modal-body" >
+        <div class="container">
+          <h2>Angular Version</h2>
+          <ul class="list-group">
+              <li class="list-group-item"  *ngFor="let item of collection | paginate: { itemsPerPage: 8, currentPage: p }"> {{item}} </li>
+          </ul>
+        </div>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+      <div class="modal-footer ">
+        <button (click)="paginationModals.hide();" type="submit " class="btn btn-danger"> <span>OK</span></button>
+      </div>
+      </div>
+  </div>
+</div>
+
+<!--
+<style>
+  .data{
+    display: none;
+  }
+</style>
+
+
+<script>
+  function onSignIn(googleUser) {
+    alert("coming");
+    var profile = googleUser.getBasicProfile();
+    $(".g-signin2").css("display","none");
+    $(".data").css("display","block");
+    $('#pic').attr('src',profile.getImageUrl());
+    $('#email').text(profile.getEmail());
+  }
+
+  function signOut(){
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function() {
+      alert("You have been successfully signed out");
+      $(".g-signin2").css("display", "block");
+      $(".data").css("display", "none");
+    });
+  }
+</script>
+-->
+
+
+
+

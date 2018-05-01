@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
 import { EmployeeService } from '../shared/employee.service';
 import { Employee } from '../shared/employee';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
@@ -9,7 +10,7 @@ import { Employee } from '../shared/employee';
 })
 export class EmployeeListComponent implements OnInit {
   employeeList: Employee[];
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService,private tostr: ToastrService) { }
 
   ngOnInit() {
     var x = this.employeeService.getData();
@@ -30,7 +31,10 @@ export class EmployeeListComponent implements OnInit {
   onDelete(key: string) {
     // if (confirm('Are you sure to delete this record ?') == true) {
       this.employeeService.deleteEmployee(key);
-      this.toastMessage();
+      // this.toastMessage();
+    this.tostr.warning('Data Deleted Succcessfully', 'Deleted', {
+      timeOut: 3000,
+    });
     //}
   }
 

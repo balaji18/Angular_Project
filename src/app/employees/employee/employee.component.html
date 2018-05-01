@@ -5,20 +5,20 @@
     <input class="form-control" name="name" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.name" placeholder="Full Name" required>
   </div>
   <div class="form-group">
-    <label>Position</label>
-    <input class="form-control" name="position" #position="ngModel" [(ngModel)]="employeeService.selectedEmployee.position" placeholder="Position" required>
+    <label>College</label>
+    <input class="form-control" name="position" #position="ngModel" [(ngModel)]="employeeService.selectedEmployee.position" placeholder="College" required>
   </div>
   <div class="form-group">
-    <label>Office</label>
-    <input class="form-control" name="office" #office="ngModel" [(ngModel)]="employeeService.selectedEmployee.office" placeholder="Office" required>
+     <label>Degree</label>
+    <input class="form-control" name="office" #office="ngModel" [(ngModel)]="employeeService.selectedEmployee.office" placeholder="Degree" required>
   </div>
   <div class="form-group">
-    <label>Salary</label>
+    <label>Fee</label>
     <div class="input-group">
       <div class="input-group-addon">
         <i class="fa fa-dollar"></i>
       </div>
-      <input class="form-control" name="salary" #salary="ngModel" [(ngModel)]="employeeService.selectedEmployee.salary" placeholder="Salary" required>
+      <input class="form-control" name="salary" #salary="ngModel" [(ngModel)]="employeeService.selectedEmployee.salary" placeholder="Fee" required>
     </div>
   </div>
   <div class="form-group">
@@ -30,4 +30,4 @@
       Reset</button>
   </div>
 </form>
-<div id="snackbar">Employee Data Submitted Succcessfully</div>
+<div id="snackbar"> Data Submitted Succcessfully</div>

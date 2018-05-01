@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../shared/employee.service'
 import {NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -10,7 +11,7 @@ import {NgForm } from '@angular/forms';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor(private employeeService : EmployeeService) { }
+  constructor(private employeeService : EmployeeService,private tostr: ToastrService) { }
 
   ngOnInit() {
     this.employeeService.getData();
@@ -25,7 +26,9 @@ export class EmployeeComponent implements OnInit {
     else
     this.employeeService.updateEmployee(employeeForm.value);
     this.resetForm(employeeForm);
-    this.toastMessage();
+    //this.toastMessage();
+    this.tostr.success('Submitted Succcessfully', ' Register');
+
   }
 
   resetForm(employeeForm?: NgForm) {
@@ -40,10 +43,10 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
-  toastMessage(){
-    var x = document.getElementById("snackbar")
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-  }
+  // toastMessage(){
+  //   var x = document.getElementById("snackbar")
+  //   x.className = "show";
+  //   setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  // }
 
 }

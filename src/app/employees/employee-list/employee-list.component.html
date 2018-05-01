@@ -1,4 +1,4 @@
-<h6 class="text-center">Employee Register</h6><br/>
+<h6 class="text-center">Student Register List</h6><br/>
 <table class="table table-sm table-hover">
   <tr *ngFor="let employee of employeeList">
     <td>{{employee.name}}</td>
@@ -10,9 +10,9 @@
       <!--<button class="btn"  tooltip="Delete" placement="left" (click)="onDelete(employee.$key)">
         <i class="fa fa-trash-o"></i>
       </button>-->
-      <button class="btn-icon"   mwlConfirmationPopover [title]="'Alert'" [message]="'Are you really <b>sure</b> you want to remove this employee ?'" placement="bottom" (confirm)="onDelete(employee.$key)" (cancel)="cancelClicked = true"><i class="fa fa-trash" aria-hidden="true"></i></button>
+      <button class="btn-icon"   mwlConfirmationPopover [title]="'Alert'" [message]="'Are you really <b>sure</b> you want to remove this data ?'" placement="bottom" (confirm)="onDelete(employee.$key)" (cancel)="cancelClicked = true"><i class="fa fa-trash" aria-hidden="true"></i></button>
 
     </td>
   </tr>
 </table>
-<div id="snackbar1">Employee Data Deleted Succcessfully</div>
+<div id="snackbar1"> Data Deleted Succcessfully</div>
